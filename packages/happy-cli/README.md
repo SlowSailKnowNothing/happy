@@ -98,6 +98,23 @@ happy gemini project get          # Show current Google Cloud Project ID
 - `HAPPY_DISABLE_CAFFEINATE` - Disable macOS sleep prevention (set to `true`, `1`, or `yes`)
 - `HAPPY_EXPERIMENTAL` - Enable experimental features (set to `true`, `1`, or `yes`)
 
+### Proxy Configuration (Corporate Networks)
+
+Happy CLI respects standard proxy environment variables for all network requests:
+
+- `HTTPS_PROXY` / `https_proxy` - HTTPS proxy server URL (e.g., `http://proxy.company.com:8080`)
+- `HTTP_PROXY` / `http_proxy` - HTTP proxy server URL
+- `NO_PROXY` / `no_proxy` - Comma-separated list of hosts to bypass proxy (e.g., `localhost,127.0.0.1,.internal.com`)
+
+**Example:**
+```bash
+export HTTPS_PROXY=http://proxy.company.com:8080
+export NO_PROXY=localhost,127.0.0.1
+happy connect gemini  # Now works through corporate proxy
+```
+
+**Note:** These variables are automatically honored by the Happy CLI for OAuth authentication and API calls. No additional configuration is needed.
+
 ### Gemini Configuration
 
 - `GEMINI_MODEL` - Override default Gemini model
