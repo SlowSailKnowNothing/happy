@@ -28,7 +28,11 @@ import { handleConnectCommand } from './commands/connect'
 import { spawnHappyCLI } from './utils/spawnHappyCLI'
 import { claudeCliPath } from './claude/claudeLocal'
 import { execFileSync } from 'node:child_process'
+import { setupGlobalProxy } from './utils/proxySetup'
 
+// Setup global proxy early to honor HTTPS_PROXY/HTTP_PROXY environment variables
+// This must be done before any fetch calls (e.g., in authenticateGemini)
+setupGlobalProxy();
 
 (async () => {
   const args = process.argv.slice(2)
